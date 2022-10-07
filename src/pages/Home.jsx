@@ -91,6 +91,7 @@ const Home = () => {
                             value={highestPrice}
                         >
                         </input>
+                        <br />
                         <Button
                             className='mt-2'
                             onClick={filterByLimits}
