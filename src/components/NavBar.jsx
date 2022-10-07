@@ -92,7 +92,7 @@ const NavBar = () => {
                 <Button variant="outline-success"
                   onClick={searchProducts}
                 >
-                  Button
+                  Search
                 </Button>
               </Form>
 

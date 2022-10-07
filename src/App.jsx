@@ -11,6 +11,7 @@ import Purchases from './pages/Purchases'
 import { getProductsThunk } from './store/slices/products.slice'
 import { Container } from 'react-bootstrap'
 import ProtectedRoutes from './components/ProtectedRoutes'
+import { getCartProductsThunk } from './store/slices/cartProducts.slice'
 function App() {
 
   const isLoading = useSelector((state) => state.isLoading)
@@ -18,6 +19,7 @@ function App() {
 
   useEffect(()=>{ 
     dispatch(getProductsThunk());
+    dispatch(getCartProductsThunk());
   },[])
 
   return (

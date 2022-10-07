@@ -34,12 +34,21 @@ const Home = () => {
         setProductsFiltered(filtered);
     }
 
+    const setAllProducts = () => {
+        setProductsFiltered(products);
+    }
 
     return (
         <Row>
             <Col lg={3}>
                 <h3>Categories:</h3>
                 <ListGroup>
+                    <ListGroup.Item
+                        onClick={setAllProducts}
+                        style={{ cursor: "pointer" }}
+                    >
+                        All Products
+                    </ListGroup.Item>
                     {
                         categories.data?.categories.map(category => (
                             <ListGroup.Item
@@ -65,7 +74,9 @@ const Home = () => {
                     {
                         productsFiltered.map(product => (
                             <Col key={product.id}>
-                                <Card onClick={() => navigate(`/productDetail/${product.id}`)}>
+                                <Card
+                                    onClick={() => navigate(`/productDetail/${product.id}`)}
+                                    style={{ cursor: "pointer" }}>
                                     <Card.Img className='img-fluid img-thumbnail p-4' variant='top' src={product?.productImgs[0]} style={{ height: "350px", objectFit: "contain" }} />
                                     <Card.Body>
                                         <Card.Title>{product.title}</Card.Title>
