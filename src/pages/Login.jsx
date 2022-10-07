@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useRef, useState } from 'react';
-import { Overlay, Tooltip } from 'react-bootstrap';
+import { Alert, Overlay, Tooltip } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useForm } from 'react-hook-form';
@@ -30,7 +30,7 @@ const Login = () => {
 
     return (
         <div style={{ maxWidth: "500px", margin: "0 auto" }}>
-            <div style={{textAlign: "center"}}>
+            <div style={{ textAlign: "center" }}>
                 <h3>Click me!</h3>
                 <Button ref={target} onClick={() => setShow(!show)}>
                     Test Credentials
@@ -66,6 +66,11 @@ const Login = () => {
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>
+
+                <Alert key={'primary'} variant={'primary'}>
+                    Do not have an Account?
+                    Click <a href='/#/register'>here</a> to create one!
+                </Alert>
             </Form>
         </div>
     );

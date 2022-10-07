@@ -12,6 +12,7 @@ import { getProductsThunk } from './store/slices/products.slice'
 import { Container } from 'react-bootstrap'
 import ProtectedRoutes from './components/ProtectedRoutes'
 import { getCartProductsThunk } from './store/slices/cartProducts.slice'
+import Register from './pages/Register'
 function App() {
 
   const isLoading = useSelector((state) => state.isLoading)
@@ -31,6 +32,7 @@ function App() {
           <Route path="/" element={<Home/>}/>
           <Route path="/productDetail/:id" element={<ProductDetail/>}/>
           <Route path="/login" element={<Login/>}/>
+          <Route path='/register' element={<Register/>}/>
 
           <Route element={<ProtectedRoutes/>}>
             <Route path="/purchases" element={<Purchases/>}/>

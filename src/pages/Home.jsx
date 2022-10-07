@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Card, Col, ListGroup, Row } from 'react-bootstrap';
+import { Button, Card, Col, ListGroup, Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Form, useNavigate } from 'react-router-dom';
 import AlertComponent from '../components/AlertComponent';
 
 const Home = () => {
@@ -16,6 +16,8 @@ const Home = () => {
 
     const [categories, setCategories] = useState({});
     const [productsFiltered, setProductsFiltered] = useState([]);
+    const [lowestPrice, setLowestPrice] = useState(0);
+    const [highestPrice, setHighestPrice] = useState(0);
 
     useEffect(() => {
         axios.get("https://ecommerce-api-react.herokuapp.com/api/v1/products/categories")
@@ -37,6 +39,14 @@ const Home = () => {
     const setAllProducts = () => {
         setProductsFiltered(products);
     }
+
+    const filterByLimits = () => {
+        const filtered = products.filter(product => {
+            return parseInt(product.price) >= lowestPrice && parseInt(product.price) <= highestPrice;
+        });
+        setProductsFiltered(filtered);
+    };
+
 
     return (
         <Row>
@@ -63,6 +73,32 @@ const Home = () => {
                     }
 
                 </ListGroup>
+                <Row className='mt-3'>
+                    <h3>Filter Products by Price</h3>
+                    <div>
+                        <p>Set lowest price</p>
+                        <input
+                            type={'number'}
+                            placeholder="Lowest Price"
+                            onChange={e => setLowestPrice(e.target.value)}
+                            value={lowestPrice}
+                        />
+                        <p className='mt-3'>Set Highest price</p>
+                        <input
+                            type={'number'}
+                            placeholder="Highest Price"
+                            onChange={e => setHighestPrice(e.target.value)}
+                            value={highestPrice}
+                        >
+                        </input>
+                        <Button
+                            className='mt-2'
+                            onClick={filterByLimits}
+                        >
+                            Filter
+                        </Button>
+                    </div>
+                </Row>
             </Col>
 
             <Col>
@@ -81,6 +117,7 @@ const Home = () => {
                                     <Card.Body>
                                         <Card.Title>{product.title}</Card.Title>
                                         <Card.Text>
+                                            <b>Price: </b>{product.price}$
                                         </Card.Text>
                                     </Card.Body>
                                 </Card>

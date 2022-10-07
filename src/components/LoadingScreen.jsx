@@ -3,7 +3,7 @@ import '../styles/loading-screen.css'
 const LoadingScreen = () => {
     return (
         <div className='overlay'>
-            <div className="lds-heart"><div></div></div>
+            <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
         </div>
     );
 };

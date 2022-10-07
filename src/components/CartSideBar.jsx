@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, ListGroup, Modal, Offcanvas } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getCartProductsThunk, purchaseCartThunk, removeProductsFromCartThunk } from '../store/slices/cartProducts.slice';
+import { getCartProductsThunk, purchaseCartThunk, removeProductsFromCartThunk, setCartProducts } from '../store/slices/cartProducts.slice';
 
 
 
@@ -19,7 +19,11 @@ const CartSideBar = ({ show, handleClose }) => {
     }, [productsCart])
 
     useEffect(() => {
-        dispatch(getCartProductsThunk());
+        if(productsCart){
+            dispatch(getCartProductsThunk());
+        }else{
+            dispatch(setCartProducts([]))
+        }
     }, [show])
 
     const checkOutCart = () => {
