@@ -12,8 +12,6 @@ const ProductDetail = () => {
     const { id } = useParams();
 
     const [smShow, setSmShow] = useState(false);
-    //filter para traer varios
-    //find para traer uno solo
 
     const productsList = useSelector(state => state.products)
 
@@ -21,22 +19,12 @@ const ProductDetail = () => {
 
     const relatedProducts = productsList.filter(product => (product.category.id === productsDetail.category.id) && (product.id !== Number(id)))
 
-    // const relatedProductsF = relatedProducts.filter(product => (product.id !== Number(id)))
-
-    // console.log(relatedProductsF);
-
-    // console.log(relatedProducts);
-    // console.log(productsDetail);
-
-    // "id": 3,
-    // "quantity": 5
 
     const dispatch = useDispatch();
 
     const [quantity, setQuantity] = useState(5);
 
     const addItem = () => {
-        // alert (`quantity ${quantity}`)
         const product = {
             id: id,
             quantity: quantity
@@ -53,7 +41,7 @@ const ProductDetail = () => {
     return (
         <Row>
             <Col>
-                {/* <h1>product Detail con ID: {id}</h1> */}
+
                 <Row style={{ textAlign: "center" }}>
                     <h1>{productsDetail?.title}</h1>
                     <div className='d-flex justify-content-evenly align-items-center'>
@@ -67,7 +55,7 @@ const ProductDetail = () => {
                                 +
                             </Button>
                         </div>
-                        {/* <br /> */}
+
                         <div>
                             <Button onClick={addItem} className="mt-2">Add to Cart</Button>
                         </div>
@@ -114,23 +102,6 @@ const ProductDetail = () => {
                     <p>{productsDetail?.description}</p>
                 </Row>
 
-                {/* <p>{productsDetail?.title}</p>
-                <p>{productsDetail?.description}</p>
-
-                <div className='rate'>
-                    <Button className="me-3" onClick={() => setQuantity(quantity - 1)}>
-                        -
-                    </Button>
-                    {quantity}
-                    <Button className="ms-3" onClick={() => setQuantity(quantity + 1)}>
-                        +
-                    </Button>
-                    <br />
-                    <Button onClick={addItem}>Add to Favorites</Button>
-                </div>
-
-                <img className='img-fluid' src={productsDetail?.productImgs[0]} alt="" /> */}
-
             </Col>
             <Col lg={3}>
                 <ListGroup variant='flush'>
@@ -147,7 +118,6 @@ const ProductDetail = () => {
                                         alt=""
                                         style={{ height: "30vh" }}
                                     />
-                                    {/* <p>{product.description}</p> */}
                                 </Link>
                             </ListGroup.Item>
                         ))

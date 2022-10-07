@@ -24,8 +24,6 @@ const NavBar = () => {
 
   const products = useSelector(state => state.products)
 
-
-  const productsCart = useSelector(state => state.cartProducts)
   const [searchValue, setSearchValue] = useState("");
   const dispatch = useDispatch();
 
@@ -40,35 +38,18 @@ const NavBar = () => {
       searchStatus: true,
       searchValue: searchValue
     }
-    // const searchStatus = true;
 
     const filtered = products.filter((product) =>
       product.title.toLowerCase().includes(searchValue.toLowerCase())
     )
 
-    // const filteredData = {
-    //   searchStatus: searchStatus,
-    //   filtered: filtered
-    // }
-
     dispatch(setFilteredStatus(searchData))
     dispatch(getFilteredProducts(filtered))
-
-    // if(!filtered){
-    //   console.log(filtered);
-    //   dispatch(getFilteredProducts(filtered))
-    // }else{
-    //   console.log("navBar");
-    //   // console.log(products);
-      // dispatch(getFilteredProducts(products))
-    // }
-    // setProductsFiltered(filtered);
   }
 
   useEffect(() => {
-    // searchProducts();
     dispatch(getFilteredProducts(products))
-  },[products])
+  }, [products])
 
 
   const [show, setShow] = useState(false);
@@ -79,38 +60,7 @@ const NavBar = () => {
 
 
   return (
-    // <Navbar bg="primary" variant="dark" expand="lg">
-    //   <Container>
-    //     <Navbar.Brand to="/" as={Link}>Ecommerce</Navbar.Brand>
-    //     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-    //     <Navbar.Collapse id="responsive-navbar-nav">
-    //       <Nav className="me-auto">
-    //         <Nav.Link as={Link} to="/login">Login</Nav.Link>
-    //         <Nav.Link as={Link} to="/purchases">Purchases</Nav.Link>
-    //         <Nav.Link>Cart</Nav.Link>
-    //       </Nav>
-    //     </Navbar.Collapse>
-    //   </Container>
-    // </Navbar>
-    //   <Navbar bg="light" expand="lg">
-    //   <Container fluid>
-    //     <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
-    //     <Navbar.Toggle aria-controls="navbarScroll" />
-    //     <Navbar.Collapse id="navbarScroll">
-    //       <Nav
-    //         className="me-auto my-2 my-lg-0"
-    //         style={{ maxHeight: '100px' }}
-    //         navbarScroll
-    //       >
-    //         <Nav.Link href="#action1">Home</Nav.Link>
-    //         <Nav.Link href="#action2">Link</Nav.Link>
-    //         <Nav.Link href="#" disabled>
-    //           Link
-    //         </Nav.Link>
-    //       </Nav>
-    //     </Navbar.Collapse>
-    //   </Container>
-    // </Navbar>
+
     <>
       <Navbar bg="primary" variant="dark" expand="lg">
         <Container fluid>
@@ -119,7 +69,6 @@ const NavBar = () => {
           <Navbar.Offcanvas
             id={`offcanvasNavbar-expand-lg`}
             aria-labelledby={`offcanvasNavbarLabel-expand-lg`}
-            // placement="start"
             placement="end"
           >
             <Offcanvas.Header closeButton>
@@ -151,7 +100,7 @@ const NavBar = () => {
           </Navbar.Offcanvas>
         </Container>
       </Navbar>
-      <CartSideBar show={show} handleClose={handleClose}/>
+      <CartSideBar show={show} handleClose={handleClose} />
     </>
   );
 };

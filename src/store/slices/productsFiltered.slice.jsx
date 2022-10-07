@@ -6,9 +6,7 @@ export const productsFilteredSlice = createSlice({
     initialState: [],
     reducers: {
         getFilteredProducts: (state, action) =>{
-            // state = useSelector(state=> state.products)
             return action.payload
-            // return state
         }
 
     }

@@ -13,13 +13,10 @@ const Login = () => {
     const target = useRef(null);
 
     const navigate = useNavigate();
-
-    //modales bootstrap y alertas
     const submit = (data) => {
-        // console.log(data);
+
         axios.post(`https://ecommerce-api-react.herokuapp.com/api/v1/users/login`, data)
             .then((res) => {
-                // console.log(res.data);
                 localStorage.setItem("token", res.data.data.token)
                 navigate("/");
             })

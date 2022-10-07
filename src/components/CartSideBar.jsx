@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, ListGroup, Offcanvas } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getCartProductsThunk, purchaseCartThunk, removeProductsFromCartThunk} from '../store/slices/cartProducts.slice';
+import { purchaseCartThunk, removeProductsFromCartThunk} from '../store/slices/cartProducts.slice';
 
 
 
@@ -14,24 +14,15 @@ const CartSideBar = ({show, handleClose}) => {
     const [totalPrice, setTotalPrice] = useState(0);
 
     useEffect(() =>{
-        // dispatch(getCartProductsThunk());
         calculateTotalPrice();
     }, [productsCart])
 
-    // useEffect(() =>{
-    //     // dispatch(getCartProductsThunk());
-    //     calculateTotalPrice();
-    // }, [totalPrice])
-
     const checkOutCart = () =>{
         dispatch(purchaseCartThunk())
-        // calculateTotalPrice();
     }
 
     const removeItemsFromCart = (productId) => {
-        // console.log(productId.toString());
          dispatch(removeProductsFromCartThunk(productId.toString()));
-        //  calculateTotalPrice();
     }
 
     const calculateTotalPrice = () =>{
@@ -79,7 +70,6 @@ const CartSideBar = ({show, handleClose}) => {
                                 </div>
 
                             </ListGroup.Item>
-                            // <ListGroup.Item>{product.brand}</ListGroup.Item>
                         ))
                     }
                         <p><b>Total Price: </b>{totalPrice}$</p>

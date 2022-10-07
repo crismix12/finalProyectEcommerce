@@ -9,22 +9,12 @@ const Purchases = () => {
     const dispatch = useDispatch();
     const purchases = useSelector(state => state.purchases)
     const navigate = useNavigate();
-    // const products = useSelector(state => state.purchases.cart?.products)
-
-    // console.log(products);
-    // console.log(purchases);
 
     useEffect(() => {
         dispatch(getPurchasesThunk())
     }, [])
 
-    // const event = new Date(purchases[0].createdAt);
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-
-
-    // console.log(event);
-    // expected output (varies according to local timezone and default locale): Thursday, December 20, 2012
-
 
     return (
         <div>
@@ -39,7 +29,6 @@ const Purchases = () => {
                             <p className=''><b>Purchased At:</b> {new Date(purchase.createdAt).toLocaleDateString(undefined, options)}</p>
                             {
                                 purchase.cart.products.map((product) => (
-                                    // <ListGroup  key= {product.id}>
                                     <ListGroup.Item 
                                                     key= {product.id}
                                                     onClick={() => navigate(`/productDetail/${product.id}`)}
@@ -50,7 +39,6 @@ const Purchases = () => {
                                         <p><b>Price: </b>{product.price}</p>
                                         <p><b>Brand: </b>{product.brand}</p>
                                     </ListGroup.Item>
-                                    // {/* </ListGroup> */}
                                 ))
                             }
                         </ListGroup.Item>

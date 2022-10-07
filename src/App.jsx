@@ -15,20 +15,14 @@ function App() {
 
   const isLoading = useSelector((state) => state.isLoading)
   const dispatch = useDispatch();
-  //el despacho de un thunk debe hacerse en un useEffect para evitar bucles infinitos
+
   useEffect(()=>{ 
     dispatch(getProductsThunk());
   },[])
 
-  const clearToken = () =>{
-    localStorage.getItem("token")
-    console.log(localStorage.getItem("token"));
-  }
-
   return (
     <HashRouter>
       <NavBar />
-      {/* <LoadingScreen /> */}
       {isLoading && <LoadingScreen />}
       <Container className='mt-5'>
         <Routes>

@@ -43,9 +43,6 @@ export const purchaseCartThunk = () => (dispatch) => {
 }
 
 export const removeProductsFromCartThunk = (productFromCartId) => (dispatch) => {
-    // console.log(producFromCartId);
-    // dispatch(setIsLoading("https://ecommerce-api-react.herokuapp.com/api/v1/cart" + productFromCartId ))
-    // return console.log(`https://ecommerce-api-react.herokuapp.com/api/v1/cart/${productFromCartId}`, getConfig());
     dispatch(setIsLoading(true));
     return axios.delete(`https://ecommerce-api-react.herokuapp.com/api/v1/cart/${productFromCartId}`, getConfig())
         .then(() => dispatch(getCartProductsThunk()))
