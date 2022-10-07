@@ -19,7 +19,6 @@ const Login = () => {
         // console.log(data);
         axios.post(`https://ecommerce-api-react.herokuapp.com/api/v1/users/login`, data)
             .then((res) => {
-                // alert("Usuario Logeado")
                 // console.log(res.data);
                 localStorage.setItem("token", res.data.data.token)
                 navigate("/");
